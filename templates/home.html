@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<body>
+    Knappens tilstand <span id="tilstand">{{tilstand}}</span>
+    <script type="text/javascript" charset="utf-8">
+    var socket = io();
+    socket.on('button_state', function(e) {
+    document.getElementById('tilstand').innerText = e == 1 ? 'Sluppet' : 'Trykket';
+    document.body.style.background = e == 1 ? 'pink' : 'salmon';
+    });
+    </script>
+    </body>
+{% endblock %}
+   
+   

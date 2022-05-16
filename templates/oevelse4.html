@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h2>Skru på gul lys</h2>
+        <input oninput="gulskru()" type="range" min="0" max="1" id="gullysstyrke"/>
+        <script>
+            var socket = io();
+            function gulskru() {
+                socket.emit('gul_skru_fra_browser',
+                {
+                    'gullysstyrke' : document.getElementById('gullysstyrke').value
+                })
+            }
+        </script>
+        <h2>Skru på rød lys</h2>
+        <input oninput="rødskru()" type="range" min="0" max="1" id="rødlysstyrke"/>
+        <script>
+            var socket = io();
+            function rødskru() {
+                socket.emit('rød_skru_fra_browser',
+                {
+                    'rødlysstyrke' : document.getElementById('rødlysstyrke').value
+                })
+            }
+        </script>
+    </body>
+</html>
